@@ -1,4 +1,8 @@
 
+add_subdirectory(mcu)
+
+# ---
+
 set(target_name blinky_cmake)
 
 add_executable(${target_name}
@@ -44,6 +48,8 @@ string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--gc-sections")
 
 # Use C math library
 string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--start-group -lc -lm -Wl,--end-group")
+
+target_link_libraries(${target_name} PRIVATE mcu)
 
 include(../cmake/binary_size.cmake)
 include(../cmake/map_file.cmake)

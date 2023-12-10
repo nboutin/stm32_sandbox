@@ -2,6 +2,10 @@
 #include "stm32f411e_discovery.h"
 #include "stm32f4xx_hal.h"
 
+#include "gpio.h"
+
+using namespace mcu;
+
 static void PeriphCommonClock_Config(void);
 static void SystemClock_Config(void);
 
@@ -37,6 +41,9 @@ int main(void)
 void Init_OnBoard_LEDs(void)
 {
   __HAL_RCC_GPIOD_CLK_ENABLE();
+
+  GPIO &gpiod_d = *new GPIO();
+  (void)gpiod_d;
 
   HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_RESET);
 

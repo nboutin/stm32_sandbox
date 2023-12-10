@@ -1,21 +1,9 @@
 # TODO
 
-## Setup
-
-- blinky with cmake, picolibc
-- cross-compilation using clang
-- cmake formatter
-- blinky with conan
-- blinky with xpack
-- use pacman to get tools
-- debug stm32f with openOCD and vscode
-- QEMU ARM see https://eclipse-embed-cdt.github.io/tutorials/blinky-arm/
-- use crt0 of GNU compiler
-
 ## Design
 
+- Memory Based Device Design
 - Superloop
-- Sequence diagram of boot sequence before main
 
 ## Library
 
