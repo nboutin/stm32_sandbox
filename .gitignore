@@ -1,0 +1,10 @@
+# Files
+*.uvguix*
+Target 1.BAT
+
+# Folder
+DebugConfig/
+Listings/
+Objects/
+build/
+bin/
