@@ -17,6 +17,7 @@
 
 #pragma once
 
+#include <bitset>
 #include <cstdint>
 #include <type_traits>
 
@@ -32,6 +33,10 @@ using device_register = std::uint32_t volatile;
  */
 class GPIO {
 public:
+  // clang-format off
+  enum pin{pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7, pin8, pin9, pin10, pin11, pin12, pin13, pin14, pin15,
+    pin16, pin17, pin18, pin19, pin20, pin21, pin22, pin23, pin24, pin25, pin26, pin27, pin28, pin29, pin30, pin31, pin32, pin33, pin34, pin35};
+  // clang-format on
   enum gpio_mode : std::uint32_t {
     gpio_input  = 0UL << 0U,
     gpio_output = 1UL << 0U,
@@ -61,6 +66,20 @@ public:
   }
 
 private:
+  /**
+   * Configure IO Direction mode (Input, Output, Alternate or Analog)
+   */
+  void set_io_direction_mode(gpio_mode gpio_mode_, pin pin_)
+  {
+    auto position = (1U << pin_) * 2;
+    std::bitset<32> temp{MODER};
+    temp &= ~(0x3 << position);     // Clear the bits
+    temp.set(position, gpio_mode_); // Set the bits
+    MODER = temp.to_ulong();        // Write the new mode back to the GPIO pins
+    // temp &= ~(GPIO_MODER_MODER0 << (position * 2U));
+    // temp |= ((GPIO_Init->Mode & GPIO_MODE) << (position * 2U));
+  }
+
   // Configuration
   device_register MODER;   /*!< GPIO port mode register,               Address offset: 0x00      */
   device_register OTYPER;  /*!< GPIO port output type register,        Address offset: 0x04      */
