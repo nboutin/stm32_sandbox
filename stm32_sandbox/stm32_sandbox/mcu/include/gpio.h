@@ -22,8 +22,7 @@
 
 #include "stm32f411xe.h"
 
-namespace mcu
-{
+namespace mcu {
 using device_register = std::uint32_t volatile;
 
 /**
@@ -31,34 +30,34 @@ using device_register = std::uint32_t volatile;
  * - virtual functions
  * - All non-static data members are of the same access control
  */
-class GPIO
-{
+class GPIO {
 public:
-  enum gpio_mode : std::uint32_t
-  {
+  enum gpio_mode : std::uint32_t {
     gpio_input  = 0UL << 0U,
     gpio_output = 1UL << 0U,
   }; // , alternate, analog
-  enum output_mode : std::uint32_t
-  {
+
+  enum output_mode : std::uint32_t {
     push_pull  = 0UL << 4U,
     open_drain = 1UL << 4U,
   };
-  enum mode : std::uint32_t
-  {
+
+  enum mode : std::uint32_t {
     input,
     output_pp = gpio_output | push_pull,
     output_od = gpio_output | open_drain,
   };
+
   GPIO()
   {
     // (void) m;
     // set_mode(m);
   }
-  void* operator new(std::size_t sz)
+  enum gpio_id { A, B, C, D, E, Not_F, Not_G, H };
+  void* operator new(std::size_t sz, gpio_id id)
   {
     (void) sz;
-    return reinterpret_cast<void*>(GPIOD_BASE);
+    return reinterpret_cast<void*>(AHB1PERIPH_BASE + id * +0x0400UL);
   }
 
 private:

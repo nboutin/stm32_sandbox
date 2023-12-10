@@ -42,7 +42,7 @@ void Init_OnBoard_LEDs(void)
 {
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
-  GPIO &gpiod_d = *new GPIO();
+  GPIO &gpiod_d = *new (GPIO::gpio_id::D) GPIO();
   (void)gpiod_d;
 
   HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_RESET);
