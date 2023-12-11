@@ -1,5 +1,6 @@
 
 add_subdirectory(mcu)
+add_subdirectory(stm32f4xx_hal_cpp)
 
 # ---
 
@@ -22,6 +23,7 @@ add_executable(${target_name}
 )
 
 target_include_directories(${target_name} PRIVATE
+  application/include
   system/include
   lib/Drivers/BSP/STM32F411E-Discovery
   lib/Drivers/CMSIS/Core/Include
@@ -49,7 +51,7 @@ string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--gc-sections")
 # Use C math library
 string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--start-group -lc -lm -Wl,--end-group")
 
-target_link_libraries(${target_name} PRIVATE mcu)
+target_link_libraries(${target_name} PRIVATE stm32f4xx_hal_cpp)
 
 include(../cmake/binary_size.cmake)
 include(../cmake/map_file.cmake)

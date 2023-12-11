@@ -2,7 +2,7 @@
 
 ## Design
 
-- Memory Based Device Design
+- Set pin value to mmo_gpio.h mcu::GPIO_t
 - Superloop
 
 ## Library

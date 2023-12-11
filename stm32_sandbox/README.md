@@ -15,6 +15,10 @@ https://github.com/vpetrigo/arm-cmake-toolchains
 
     ./gen_build_install.sh
 
+### Build, Install
+
+    ./build_install.sh
+
 ### Step by step
 
 Generate with ARM GNU:
@@ -29,8 +33,3 @@ Build:
 Install:
 
     cmake --install build/MinSizeRel --prefix .
-
-## External files
-
-Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\gcc\startup_stm32f411xe.s
-Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c

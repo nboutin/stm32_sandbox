@@ -1,15 +1,15 @@
 
 #include "stm32f411e_discovery.h"
 #include "stm32f4xx_hal.h"
+#include "stm32f4xx_hal_cpp.h"
 
-#include "gpio.h"
+#include "peripherals.h"
 
-using namespace mcu;
+using namespace peripherals;
 
 static void PeriphCommonClock_Config(void);
 static void SystemClock_Config(void);
 
-static void Init_OnBoard_LEDs(void);
 static void Delay_ms(volatile int time_ms);
 static void Error_Handler(void);
 
@@ -24,35 +24,20 @@ int main(void)
   /* Configure the peripherals common clocks */
   PeriphCommonClock_Config();
 
-  Init_OnBoard_LEDs();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
 
   while (1)
   {
     while (1)
     {
-      HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_SET);
+      // HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_SET);
+      gpiod.set();
       Delay_ms(2000);
-      HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_RESET);
+      // HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_RESET);
+      gpiod.reset();
       Delay_ms(2000);
     }
   }
-}
-
-void Init_OnBoard_LEDs(void)
-{
-  __HAL_RCC_GPIOD_CLK_ENABLE();
-
-  GPIO &gpiod_d = *new (GPIO::gpio_id::D) GPIO();
-  (void)gpiod_d;
-
-  HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_RESET);
-
-  GPIO_InitTypeDef BoardLEDs;
-  BoardLEDs.Mode  = GPIO_MODE_OUTPUT_PP;
-  BoardLEDs.Pin   = LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN;
-  BoardLEDs.Pull  = GPIO_NOPULL;
-  BoardLEDs.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOD, &BoardLEDs);
 }
 
 void Delay_ms(volatile int time_ms)
