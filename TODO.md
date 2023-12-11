@@ -3,6 +3,7 @@
 ## Design
 
 - Set pin value to mmo_gpio.h mcu::GPIO_t
+- Test MMO implementation againtst stm32f4xx_hal
 - Superloop
 
 ## Library

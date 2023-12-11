@@ -5,7 +5,7 @@
 
 #include "peripherals.h"
 
-using namespace peripherals;
+using namespace stm32f4xx;
 
 static void PeriphCommonClock_Config(void);
 static void SystemClock_Config(void);
@@ -31,10 +31,10 @@ int main(void)
     while (1)
     {
       // HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_SET);
-      gpiod.set();
+      gpiod.set(GPIOD::pin::pin12);
       Delay_ms(2000);
       // HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_RESET);
-      gpiod.reset();
+      gpiod.reset(GPIOD::pin::pin12);
       Delay_ms(2000);
     }
   }

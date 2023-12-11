@@ -29,7 +29,8 @@ using device_register = std::uint32_t volatile;
  * - virtual functions
  * - All non-static data members are of the same access control
  */
-template <typename gpio_traits> class GPIO_t {
+template <typename gpio_traits>
+class GPIO_t {
 public:
   // clang-format off
   enum pin{pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7, pin8, pin9, pin10, pin11, pin12, pin13, pin14, pin15,
@@ -57,11 +58,12 @@ public:
   static void* operator new(std::size_t);
   static void operator delete(void*) {}
 
-  void set();
-  void reset();
+  void set(pin pin_);
+  void reset(pin pin_);
 
 private:
   void set_io_direction_mode(gpio_mode gpio_mode_, pin pin_);
+  std::uint32_t pin_to_position(pin pin_);
 
   // Configuration
   device_register MODER;   /*!< GPIO port mode register,               Address offset: 0x00      */
@@ -79,19 +81,35 @@ private:
   device_register AFR[2]; /*!< GPIO alternate function registers,     Address offset: 0x20-0x24 */
 };
 
-template <typename gpio_traits> static void* GPIO_t<gpio_traits>::operator new(std::size_t)
+template <typename gpio_traits>
+static void* GPIO_t<gpio_traits>::operator new(std::size_t)
 {
   return reinterpret_cast<void*>(gpio_traits::base_address);
 }
 
-template <typename gpio_traits> void GPIO_t<gpio_traits>::set() {}
+template <typename gpio_traits>
+void GPIO_t<gpio_traits>::set(GPIO_t<gpio_traits>::pin pin_)
+{
+  BSRR = GPIO_t<gpio_traits>::pin_to_position(pin_);
+}
 
-template <typename gpio_traits> void GPIO_t<gpio_traits>::reset() {}
+template <class gpio_traits>
+void GPIO_t<gpio_traits>::reset(GPIO_t<gpio_traits>::pin pin_)
+{
+  BSRR = GPIO_t<gpio_traits>::pin_to_position(pin_) << 16U;
+}
+
+template <typename gpio_traits>
+std::uint32_t GPIO_t<gpio_traits>::pin_to_position(GPIO_t<gpio_traits>::pin pin_)
+{
+  return 1UL << pin_;
+}
 
 /**
  * Configure IO Direction mode (Input, Output, Alternate or Analog)
  */
-template <typename gpio_traits> void GPIO_t<gpio_traits>::set_io_direction_mode(gpio_mode gpio_mode_, pin pin_)
+template <typename gpio_traits>
+void GPIO_t<gpio_traits>::set_io_direction_mode(gpio_mode gpio_mode_, pin pin_)
 {
   auto position = (1U << pin_) * 2;
   std::bitset<32> temp{MODER};
