@@ -53,7 +53,7 @@ public:
     output_od = gpio_output | open_drain,
   };
 
-  GPIO_t(){};
+  GPIO_t(pin pin_, gpio_mode gpio_mode_);
 
   static void* operator new(std::size_t);
   static void operator delete(void*) {}
@@ -62,7 +62,7 @@ public:
   void reset(pin pin_);
 
 private:
-  void set_io_direction_mode(gpio_mode gpio_mode_, pin pin_);
+  void set_gpio_mode(pin pin_, gpio_mode gpio_mode_);
   std::uint32_t pin_to_position(pin pin_);
 
   // Configuration
@@ -80,6 +80,13 @@ private:
   // Alternate function
   device_register AFR[2]; /*!< GPIO alternate function registers,     Address offset: 0x20-0x24 */
 };
+
+template <typename gpio_traits>
+GPIO_t<gpio_traits>::GPIO_t(pin pin_, gpio_mode gpio_mode_)
+  : MODER{0x00UL} // todo: Reset value differ for port A & B see 8.4.1
+{
+  set_gpio_mode(pin_, gpio_mode_);
+}
 
 template <typename gpio_traits>
 static void* GPIO_t<gpio_traits>::operator new(std::size_t)
@@ -109,16 +116,18 @@ std::uint32_t GPIO_t<gpio_traits>::pin_to_position(GPIO_t<gpio_traits>::pin pin_
 /**
  * Configure IO Direction mode (Input, Output, Alternate or Analog)
  */
+// temp = GPIOx->MODER;
+// temp &= ~(GPIO_MODER_MODER0 << (position * 2U));
+// temp |= ((GPIO_Init->Mode & GPIO_MODE) << (position * 2U));
+// GPIOx->MODER = temp;
 template <typename gpio_traits>
-void GPIO_t<gpio_traits>::set_io_direction_mode(gpio_mode gpio_mode_, pin pin_)
+void GPIO_t<gpio_traits>::set_gpio_mode(pin pin_, gpio_mode gpio_mode_)
 {
-  auto position = (1U << pin_) * 2;
-  std::bitset<32> temp{MODER};
-  temp &= ~(0x3 << position);     // Clear the bits
-  temp.set(position, gpio_mode_); // Set the bits
-  MODER = temp.to_ulong();        // Write the new mode back to the GPIO pins
-  // temp &= ~(GPIO_MODER_MODER0 << (position * 2U));
-  // temp |= ((GPIO_Init->Mode & GPIO_MODE) << (position * 2U));
+  auto position = GPIO_t<gpio_traits>::pin_to_position(pin_);
+  auto temp     = MODER;
+  temp &= ~(0x03 << (position * 2U));
+  temp |= ((gpio_mode_ & 0x03) << (position * 2U));
+  MODER = temp;
 }
 
 } // namespace mcu

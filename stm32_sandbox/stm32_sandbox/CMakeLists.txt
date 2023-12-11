@@ -1,7 +1,7 @@
 
 add_subdirectory(mcu)
 add_subdirectory(stm32f4xx_hal_cpp)
-# add_subdirectory(board)
+add_subdirectory(board)
 
 # ---
 
@@ -52,7 +52,7 @@ string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--gc-sections")
 # Use C math library
 string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--start-group -lc -lm -Wl,--end-group")
 
-target_link_libraries(${target_name} PRIVATE stm32f4xx_hal_cpp) # board
+target_link_libraries(${target_name} PRIVATE stm32f4xx_hal_cpp board)
 
 include(../cmake/binary_size.cmake)
 include(../cmake/map_file.cmake)
