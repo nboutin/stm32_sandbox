@@ -102,6 +102,7 @@ void GPIO_t<gpio_traits>::reset(GPIO_t<gpio_traits>::pin pin_)
 template <typename gpio_traits>
 std::uint32_t GPIO_t<gpio_traits>::pin_to_position(GPIO_t<gpio_traits>::pin pin_)
 {
+  // todo: constexpr ?
   return 1UL << pin_;
 }
 

@@ -4,6 +4,7 @@
 #include "stm32f4xx_hal_cpp.h"
 
 #include "peripherals.h"
+// #include "stm32f411e_disco.h"
 
 using namespace stm32f4xx;
 
@@ -32,6 +33,7 @@ int main(void)
     {
       // HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_SET);
       gpiod.set(GPIOD::pin::pin12);
+      // gpiod.set(stm32f411e_disco::LED4);
       Delay_ms(2000);
       // HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_RESET);
       gpiod.reset(GPIOD::pin::pin12);
