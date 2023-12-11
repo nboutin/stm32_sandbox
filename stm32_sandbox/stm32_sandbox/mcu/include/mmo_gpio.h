@@ -5,16 +5,6 @@
  * \date 2023-12
  */
 
-// __HAL_RCC_GPIOD_CLK_ENABLE();
-// HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_RESET);
-
-// GPIO_InitTypeDef BoardLEDs;
-// BoardLEDs.Mode  = GPIO_MODE_OUTPUT_PP;
-// BoardLEDs.Pin   = LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN;
-// BoardLEDs.Pull  = GPIO_NOPULL;
-// BoardLEDs.Speed = GPIO_SPEED_FREQ_LOW;
-// HAL_GPIO_Init(GPIOD, &BoardLEDs);
-
 #pragma once
 
 #include <bitset>
@@ -24,11 +14,6 @@
 namespace mcu {
 using device_register = std::uint32_t volatile;
 
-/**
- * \details To maintain a standard-layout class, it is forbidden to add:
- * - virtual functions
- * - All non-static data members are of the same access control
- */
 template <typename gpio_traits>
 class GPIO_t {
 public:
