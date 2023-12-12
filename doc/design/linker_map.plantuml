@@ -1,0 +1,14 @@
+card card [
+.isr_vector
+.text
+.init
+.fini
+.ro_data
+.ARM
+.init_array
+.fini_array
+.data
+.bss
+._user_heap_stack
+.ARM.attributes
+]

@@ -1,0 +1,200 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.37.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: nicolas boutin, marelli, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.37.0.0
+Toolchain Path:  D:\program\mdk-arm_v537\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.18
+Assembler:       Armasm.exe V6.18
+Linker/Locator:  ArmLink.exe V6.18
+Library Manager: ArmAr.exe V6.18
+Hex Converter:   FromElf.exe V6.18
+CPU DLL:         SARMCM3.DLL V5.37.0.0
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      UL2CM3.DLL V1.164.7.0
+Dialog DLL:      TCM.DLL V1.56.1.0
+ 
+<h2>Project:</h2>
+D:\perso\dev\stm32f_disco_blinky\blinky_cmake\blinky\lib\Projects\STM32F411E-Discovery\Examples\BSP\MDK-ARM\Project.uvprojx
+Project File Date:  12/08/2023
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.18', folder: 'D:\program\mdk-arm_v537\ARM\ARMCLANG\Bin'
+Rebuild target 'STM32F411E-Discovery'
+ArmClang: error: no such file or directory: '../../../../../Drivers/BSP/Components/l3gd20/l3gd20.c'
+ArmClang: error: no input files
+compiling l3gd20.c...
+ArmClang: error: no such file or directory: '../../../../../Drivers/BSP/Components/lsm303dlhc/lsm303dlhc.c'
+ArmClang: error: no input files
+compiling lsm303dlhc.c...
+ArmClang: error: no such file or directory: '../../../../../Drivers/BSP/Components/lsm303agr/lsm303agr.c'
+ArmClang: error: no input files
+compiling lsm303agr.c...
+ArmClang: error: no such file or directory: '../../../../../Drivers/BSP/Components/i3g4250d/i3g4250d.c'
+ArmClang: error: no input files
+compiling i3g4250d.c...
+../Src/stm32f4xx_it.c(22): error: 'main.h' file not found
+#include "main.h"
+         ^~~~~~~~
+1 error generated.
+compiling stm32f4xx_it.c...
+../Src/main.c(20): error: 'main.h' file not found
+#include "main.h"
+         ^~~~~~~~
+1 error generated.
+compiling main.c...
+../Src/audio_record.c(20): error: 'audio_record.h' file not found
+#include "audio_record.h"
+         ^~~~~~~~~~~~~~~~
+1 error generated.
+compiling audio_record.c...
+compiling system_stm32f4xx.c...
+../Src/audio_play.c(20): error: 'audio_play.h' file not found
+#include "audio_play.h"
+         ^~~~~~~~~~~~~~
+1 error generated.
+compiling audio_play.c...
+../Src/mems.c(20): error: 'mems.h' file not found
+#include "mems.h"
+         ^~~~~~~~
+1 error generated.
+compiling mems.c...
+assembling startup_stm32f411xe.s...
+ArmClang: error: no such file or directory: '../../../../../Drivers/BSP/Components/cs43l22/cs43l22.c'
+ArmClang: error: no input files
+compiling cs43l22.c...
+../../../../../Drivers/BSP/STM32F411E-Discovery/stm32f411e_discovery_audio.c(115): warning: In file included from...
+../../../../../Drivers/BSP/STM32F411E-Discovery/stm32f411e_discovery_audio.h(30): error: '../Components/cs43l22/cs43l22.h' file not found
+#include "../Components/cs43l22/cs43l22.h"
+         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f411e_discovery_audio.c...
+../../../../../Drivers/BSP/STM32F411E-Discovery/stm32f411e_discovery_accelerometer.c(21): warning: In file included from...
+../../../../../Drivers/BSP/STM32F411E-Discovery/stm32f411e_discovery_accelerometer.h(30): warning: In file included from...
+../../../../../Drivers/BSP/STM32F411E-Discovery/stm32f411e_discovery.h(29): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f411e_discovery_accelerometer.c...
+../../../../../Drivers/BSP/STM32F411E-Discovery/stm32f411e_discovery_gyroscope.c(20): warning: In file included from...
+../../../../../Drivers/BSP/STM32F411E-Discovery/stm32f411e_discovery_gyroscope.h(30): warning: In file included from...
+../../../../../Drivers/BSP/STM32F411E-Discovery/stm32f411e_discovery.h(29): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f411e_discovery_gyroscope.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c(108): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_gpio.c...
+../../../../../Drivers/BSP/STM32F411E-Discovery/stm32f411e_discovery.c(21): warning: In file included from...
+../../../../../Drivers/BSP/STM32F411E-Discovery/stm32f411e_discovery.h(29): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f411e_discovery.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2s.c(187): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_i2s.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c(62): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_flash_ex.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c(97): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_dma.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c(301): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_i2c.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2s_ex.c(89): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_i2s_ex.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c(24): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_pwr.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c(67): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_rcc.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c(76): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_flash.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c(200): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_spi.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c(23): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_pwr_ex.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c(81): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_cortex.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c(42): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_i2c_ex.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c(36): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal.c...
+../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c(23): error: 'stm32f4xx_hal.h' file not found
+#include "stm32f4xx_hal.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling stm32f4xx_hal_rcc_ex.c...
+".\Project.axf" - 34 Error(s), 0 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
+                ARM.CMSIS.5.9.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.6.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.1.pack
+                Keil.STM32F4xx_DFP.2.17.1
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  ./RTE/_STM32F411E-Discovery
+  C:/Users/n.boutin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  C:/Users/n.boutin/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.6.0
+Target not created.
+Build Time Elapsed:  00:00:07
+</pre>
+</body>
+</html>

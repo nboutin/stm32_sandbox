@@ -1,6 +1,4 @@
 {
   "editor.tabSize": 2,
-  "cmake.sourceDirectory": [
-    "${workspaceFolder}/blinky_cmake",
-  ],
+  "cmake.sourceDirectory": "${workspaceFolder}/stm32_sandbox/",
 }
