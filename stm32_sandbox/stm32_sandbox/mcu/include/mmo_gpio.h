@@ -18,8 +18,8 @@ template <typename gpio_traits>
 class GPIO_t {
 public:
   // clang-format off
-  enum pin{pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7, pin8, pin9, pin10, pin11, pin12, pin13, pin14, pin15,
-    pin16, pin17, pin18, pin19, pin20, pin21, pin22, pin23, pin24, pin25, pin26, pin27, pin28, pin29, pin30, pin31, pin32, pin33, pin34, pin35};
+  enum pin{pin0 = 0, pin1, pin2, pin3, pin4, pin5, pin6, pin7, pin8, pin9, pin10, pin11, pin12, pin13, pin14, pin15, pin16, pin17,
+  pin18, pin19, pin20, pin21, pin22, pin23, pin24, pin25, pin26, pin27, pin28, pin29, pin30, pin31, pin32, pin33, pin34, pin35};
   // clang-format on
 
   enum gpio_mode : std::uint32_t {
@@ -48,7 +48,7 @@ public:
 
 private:
   void set_gpio_mode(pin pin_, gpio_mode gpio_mode_);
-  std::uint32_t pin_to_position(pin pin_);
+  constexpr std::uint32_t pin_to_position(pin pin_);
 
   // Configuration
   device_register MODER;   /*!< GPIO port mode register,               Address offset: 0x00      */
@@ -92,9 +92,8 @@ void GPIO_t<gpio_traits>::reset(GPIO_t<gpio_traits>::pin pin_)
 }
 
 template <typename gpio_traits>
-std::uint32_t GPIO_t<gpio_traits>::pin_to_position(GPIO_t<gpio_traits>::pin pin_)
+constexpr std::uint32_t GPIO_t<gpio_traits>::pin_to_position(GPIO_t<gpio_traits>::pin pin_)
 {
-  // todo: constexpr ?
   return 1UL << pin_;
 }
 
