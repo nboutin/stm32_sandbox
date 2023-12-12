@@ -14,6 +14,6 @@
 // HAL_GPIO_Init(GPIOD, &BoardLEDs);
 
 stm32f4xx::GPIOD& gpiod{
-    *new stm32f4xx::GPIOD{stm32f411e_disco::LED4, stm32f4xx::GPIOD::gpio_output}
+    *new stm32f4xx::GPIOD{stm32f411e_disco::LED4, stm32f4xx::GPIOD::output_pp}
 };
 // stm32f4xx::GPIOD& gpiod{*new stm32f4xx::GPIOD{stm32f4xx::GPIOD::pin12}};

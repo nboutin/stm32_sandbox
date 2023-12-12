@@ -38,7 +38,7 @@ public:
     output_od = gpio_output | open_drain,
   };
 
-  GPIO_t(pin pin_, gpio_mode gpio_mode_);
+  GPIO_t(pin pin_, mode mode_);
 
   static void* operator new(std::size_t);
   static void operator delete(void*) {}
@@ -47,8 +47,16 @@ public:
   void reset(pin pin_);
 
 private:
-  void set_gpio_mode(pin pin_, gpio_mode gpio_mode_);
+  constexpr static std::uint32_t GPIO_MODE_MASK{0x03U};
+  constexpr static std::uint32_t GPIO_MODER_MASK{0x03U};
+
   constexpr std::uint32_t pin_to_position(pin pin_);
+  constexpr gpio_mode make_gpio_mode(mode mode_)
+  {
+    return static_cast<gpio_mode>(mode_ & GPIO_MODE_MASK);
+  }
+
+  void set_gpio_mode(pin pin_, gpio_mode gpio_mode_);
 
   // Configuration
   device_register MODER;   /*!< GPIO port mode register,               Address offset: 0x00      */
@@ -67,9 +75,9 @@ private:
 };
 
 template <typename gpio_traits>
-GPIO_t<gpio_traits>::GPIO_t(pin pin_, gpio_mode gpio_mode_)
-  : MODER{0x00UL} // todo: Reset value differ for port A & B see 8.4.1
+GPIO_t<gpio_traits>::GPIO_t(pin pin_, mode mode_) : MODER{0x00UL} // todo: Reset value differ for port A & B see 8.4.1
 {
+  gpio_mode gpio_mode_ = make_gpio_mode(mode_);
   set_gpio_mode(pin_, gpio_mode_);
 }
 
@@ -109,8 +117,8 @@ void GPIO_t<gpio_traits>::set_gpio_mode(pin pin_, gpio_mode gpio_mode_)
 {
   auto position = GPIO_t<gpio_traits>::pin_to_position(pin_);
   auto temp     = MODER;
-  temp &= ~(0x03 << (position * 2U));
-  temp |= ((gpio_mode_ & 0x03) << (position * 2U));
+  temp &= ~(GPIO_MODER_MASK << (position * 2U));
+  temp |= (gpio_mode_ << (position * 2U));
   MODER = temp;
 }
 
