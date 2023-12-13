@@ -63,8 +63,19 @@ target_link_libraries(${target_name} PRIVATE stm32f4xx_hal_cpp board)
 
 include(cmake/binary_size.cmake)
 include(cmake/map_file.cmake)
+add_custom_target(${target_name}.bin
+  DEPENDS ${target_name}.elf
+  COMMAND ${CMAKE_OBJCOPY} -Obinary ${target_name}.elf ${target_name}.bin)
 
 # --- install
 
 include(GNUInstallDirs)
 install(TARGETS ${target_name} EXPORT ${target_name})
+# install(TARGETS ${target_name}.bin EXPORT ${target_name})
+
+# --- flash
+
+# add_custom_target(flash DEPENDS ${PROJECT_NAME}.hex
+#   COMMAND nrfjprog -f NRF52 --program ${PROJECT_NAME}.hex --chiperase --verify
+#   COMMAND nrfjprog -f NRF52 --reset
+# )
